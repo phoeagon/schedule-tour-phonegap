@@ -11,17 +11,17 @@
       </style> 
 </head>
 <body>
-            <iframe id="tree" name="tree" frameborder="0" marginheight="0"
-            marginwidth="0" scrolling="auto" src="http://202.120.40.52:8400/" style="height:100%;width:100%;"></iframe>
+           <!-- <iframe id="tree" name="tree" frameborder="0" marginheight="0"
+            marginwidth="0" scrolling="auto" src="http://202.120.40.52:8400/" style="height:100%;width:100%;"></iframe>-->
 </body>
 <script type="text/javascript" src="phonegap.js"></script>
 <script type="type/javascript">
-<script charset="utf-8" type="text/javascript" src="cordova-1.6.0.js"> 
   document.addEventListener("deviceready",function() {
     var iframe = document.getElementById('tree');
     var url = "http://202.120.40.52:8400/";
+    var iframe = window.open( url , '_blank', 'location=no');
     // Announce that we have a camera.
-    iframe.addEventListener("load", function(event) {
+    iframe.addEventListener("loadstop", function(event) {
       iframe.contentWindow.postMessage({
         cameraEnabled: navigator.camera != null && navigator.camera.getPicture != null 
       }, url);
@@ -32,8 +32,6 @@
             eval( event.data )
       }
     }, false);
-    iframe.src= url;
   }, false);
-// ]]>
 </script>
 </html>
