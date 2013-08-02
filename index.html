@@ -1,12 +1,39 @@
-<html><head>
-<style type="text/css">
-html {overflow: auto;}
-html, body, div, iframe {margin: 0px; padding: 0px; height: 100%; border: none;}
-iframe {display: block; width: 100%; border: none; overflow-y: auto; overflow-x: hidden;}
-</style> 
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <title>ScheduleTour</title>
+      <style type="text/css">
+      html {overflow: auto;}
+      html, body, div, iframe {margin: 0px; padding: 0px; height: 100%; border: none;}
+      iframe {display: block; width: 100%; border: none; overflow-y: auto; overflow-x: hidden;}
+      </style> 
 </head>
 <body>
             <iframe id="tree" name="tree" frameborder="0" marginheight="0"
             marginwidth="0" scrolling="auto" src="http://202.120.40.52:8400/" style="height:100%;width:100%;"></iframe>
 </body>
+<script type="text/javascript" src="phonegap.js"></script>
+<script type="type/javascript">
+<script charset="utf-8" type="text/javascript" src="cordova-1.6.0.js"> 
+  document.addEventListener("deviceready",function() {
+    var iframe = document.getElementById('tree');
+    var url = "http://202.120.40.52:8400/";
+    // Announce that we have a camera.
+    iframe.addEventListener("load", function(event) {
+      iframe.contentWindow.postMessage({
+        cameraEnabled: navigator.camera != null && navigator.camera.getPicture != null 
+      }, url);
+    }, false);
+    // Listen for requests to use it.
+    window.addEventListener("message", function(event) {
+      if (event.origin == url) {
+            eval( event.data )
+      }
+    }, false);
+    iframe.src= url;
+  }, false);
+// ]]>
+</script>
 </html>
