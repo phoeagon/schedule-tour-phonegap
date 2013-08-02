@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
@@ -9,29 +10,11 @@
       html, body, div, iframe {margin: 0px; padding: 0px; height: 100%; border: none;}
       iframe {display: block; width: 100%; border: none; overflow-y: auto; overflow-x: hidden;}
       </style> 
-</head>
-<body>
-           <!-- <iframe id="tree" name="tree" frameborder="0" marginheight="0"
-            marginwidth="0" scrolling="auto" src="http://202.120.40.52:8400/" style="height:100%;width:100%;"></iframe>-->
-</body>
+
+<script type="text/javascript" src="new.js"></script>
+<script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="phonegap.js"></script>
-<script type="type/javascript">
-  document.addEventListener("deviceready",function() {
-    var iframe = document.getElementById('tree');
-    var url = "http://202.120.40.52:8400/";
-    var iframe = window.open( url , '_blank', 'location=no');
-    // Announce that we have a camera.
-    iframe.addEventListener("loadstop", function(event) {
-      iframe.contentWindow.postMessage({
-        cameraEnabled: navigator.camera != null && navigator.camera.getPicture != null 
-      }, url);
-    }, false);
-    // Listen for requests to use it.
-    window.addEventListener("message", function(event) {
-      if (event.origin == url) {
-            eval( event.data )
-      }
-    }, false);
-  }, false);
-</script>
+</head>
+<body onload="javascript:onreadycb()">
+</body>
 </html>
